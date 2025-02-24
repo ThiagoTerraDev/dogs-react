@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     margin: 0px;
+    padding-top: 4rem;
     color: #333;
     --type--first: 'Helvetica', 'Arial', sans-serif;
     --type--second: 'Spectral', 'Georgia';
@@ -36,6 +37,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--type--first);
     color: #333;
   }
+  a {
+    text-decoration: none;
+  }
   .container {
     max-width: 50rem;
     padding: 0 1rem;
@@ -47,16 +51,12 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <div className='container'>
+      <div>
         <BrowserRouter>
           <Header />
             <Routes>
-              <Route 
-                path="/"
-                element={<Home />} />
-              <Route 
-              path="/login"
-              element={<Login />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           <Footer />
         </BrowserRouter>
