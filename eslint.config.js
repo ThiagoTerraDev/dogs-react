@@ -12,7 +12,7 @@ export default [
     rules: { 
       quotes: ['error', 'single'],
       semi : ['error', 'always'],
-      'react/jsx-max-props-per-line': ['error', { maximum: 1 }],
+      'react/jsx-max-props-per-line': ['error', { maximum: 3 }],
     } 
   },
 ];
