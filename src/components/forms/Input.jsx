@@ -42,7 +42,7 @@ const ErrorMessage = styled.p`
 `;
 
 
-const Input = ({ label, type, name, value, onChange }) => {
+const Input = ({ label, type, name, value, onChange, error, onBlur }) => {
   return (
     <InputWrapper>
       <LabelStyled htmlFor={name}>{label}</LabelStyled>
@@ -51,8 +51,12 @@ const Input = ({ label, type, name, value, onChange }) => {
         type={type} 
         label={label}
         value={value}
-        onChange={onChange} />
-      <ErrorMessage>Error</ErrorMessage>
+        onChange={onChange}
+        onBlur={onBlur}
+      />
+      {error && (
+        <ErrorMessage>{error}</ErrorMessage>
+      )}
     </InputWrapper>
   );
 };
