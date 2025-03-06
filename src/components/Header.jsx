@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Dog from '../Assets/dogs.svg?react';
 import UserIcon from '../Assets/usuario.svg?react';
+import { UserContext } from '../UserContext';
 
 
 const HeaderContainer = styled.header`
@@ -25,7 +26,7 @@ const LogoLink = styled(Link)`
   padding: 0.5rem 0;
 `;
 
-const LoginLink = styled(Link)`
+const AuthLink = styled(Link)`
   color: #333;
   display: flex;
   align-items: center;
@@ -38,16 +39,25 @@ const UserIconStyled = styled(UserIcon)`
 `;
 
 const Header = () => {
+  const { data } = useContext(UserContext);
+
   return (
     <HeaderContainer>
       <HeaderNavigation className='container'>
         <LogoLink to="/" aria-label="Dogs - Home">
           <Dog />
         </LogoLink>
-        <LoginLink to="/login">
-          Login / Register
-          <UserIconStyled />
-        </LoginLink>
+        {data ? (
+          <AuthLink to="account">
+            {data.username}
+            <UserIconStyled />
+          </AuthLink>
+        ) : (
+          <AuthLink to="/login">
+            Login / Register
+            <UserIconStyled />
+          </AuthLink>
+        )}
       </HeaderNavigation>
     </HeaderContainer>
   );

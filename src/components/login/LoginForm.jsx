@@ -1,42 +1,22 @@
-import { React, useEffect } from 'react';
+import { React, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../forms/Input';
 import Button from '../forms/Button';
 import useForm from '../../hooks/useForm';
-import { TOKEN_POST, USER_GET } from '../../api';
+import { UserContext } from '../../UserContext';
 
 
 const LoginForm = () => {
   const username = useForm();
   const password = useForm();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    if (token) getUser(token);
-  }, []);
-
-  const getUser = async (token) => {
-    const { url, options } = USER_GET(token);
-    const response = await fetch(url, options);
-    const json = await response.json();
-    console.log(json);
-  };
+  const { userLogin } = useContext(UserContext);
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      const { url, options } = TOKEN_POST({ 
-        username: username.value, 
-        password: password.value 
-      });
-
-      const response = await fetch(url, options);
-      const json = await response.json();
-      
-      localStorage.setItem('token', json.token);
-      getUser(json.token);
+      userLogin(username.value, password.value);
     }
   };
 
@@ -56,7 +36,7 @@ const LoginForm = () => {
           name='password'
           {...password}
         />
-        <Button disabled={false}>Enter</Button>
+        <Button disabled={false}>Sign In</Button>
       </form>
       <Link to="/login/register">Register</Link>
     </section>
