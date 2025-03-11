@@ -10,7 +10,7 @@ const LoginForm = () => {
   const username = useForm();
   const password = useForm();
 
-  const { userLogin } = useContext(UserContext);
+  const { userLogin, error, loading } = useContext(UserContext);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -36,7 +36,13 @@ const LoginForm = () => {
           name='password'
           {...password}
         />
-        <Button disabled={false}>Sign In</Button>
+        {error && <p>{error}</p>}
+        {loading ? (
+          <Button disabled>Please wait</Button>
+          ) : (
+            <Button disabled={false}>Sign In</Button>
+          )
+        }
       </form>
       <Link to="/login/register">Register</Link>
     </section>
