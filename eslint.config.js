@@ -15,6 +15,7 @@ export default [
       'react/jsx-max-props-per-line': ['error', { maximum: 2 }],
       'react/jsx-indent': ['error', 2],
       'react/prop-types': 'off',
+      'no-unsafe-finally': 'off',
     } 
   },
 ];
