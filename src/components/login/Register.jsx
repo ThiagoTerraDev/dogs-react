@@ -5,6 +5,8 @@ import Button from '../forms/Button';
 import useForm from '../../hooks/useForm';
 import { USER_POST } from '../../api';
 import { UserContext } from '../../UserContext';
+import useFetch from '../../hooks/useFetch';
+import Error from '../helper/ErrorMessage';
 
 
 const animeLeft = keyframes`
@@ -27,6 +29,8 @@ const Register = () => {
 
   const { userLogin } = useContext(UserContext);
 
+  const { loading, error, request } = useFetch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,7 +41,7 @@ const Register = () => {
         password: password.value,
       });
   
-      const response = await fetch(url, options);
+      const { response } = await request(url, options);
       
       if (response.ok) userLogin(username.value, password.value);
     }
@@ -65,7 +69,12 @@ const Register = () => {
           name="password"
           {...password}
         />
-        <Button>Register</Button>
+        {loading ? (
+          <Button disabled>Signing up...</Button>
+        ) : (
+          <Button>Register</Button>
+        )}
+        <Error error={error} />
       </form>
     </AnimateLeftSection>
   );
