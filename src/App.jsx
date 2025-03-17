@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/login/Login';
 import { UserStorage } from './UserContext';
+import ProtectedRoute from './components/helper/ProtectedRoute';
+import User from './components/user/User';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -79,8 +81,16 @@ const App = () => {
           <UserStorage>
             <Header />
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login/*" element={<Login />} />
+              <Route path='/' element={<Home />} />
+              <Route path='/login/*' element={<Login />} />
+              <Route 
+                path='/account/*' 
+                element={
+                  <ProtectedRoute>
+                    <User />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
             <Footer />
           </UserStorage>
