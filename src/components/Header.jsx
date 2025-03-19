@@ -39,7 +39,7 @@ const UserIconStyled = styled(UserIcon)`
 `;
 
 const Header = () => {
-  const { data, userLogout } = useContext(UserContext);
+  const { data } = useContext(UserContext);
 
   return (
     <HeaderContainer>
@@ -48,13 +48,10 @@ const Header = () => {
           <Dog />
         </LogoLink>
         {data ? (
-          <>
-            <AuthLink to="account">
-              {data.username}
-              <UserIconStyled />
-            </AuthLink>
-            <button onClick={userLogout}>Logout</button>
-          </>
+          <AuthLink to="account">
+            {data.username}
+            <UserIconStyled />
+          </AuthLink>
         ) : (
           <AuthLink to="/login">
             Login / Register

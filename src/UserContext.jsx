@@ -49,8 +49,7 @@ export const UserStorage = ({ children }) => {
     setLoading(false);
     setLogin(false);
     localStorage.removeItem('token');
-    navigate('/login');
-  }, [navigate]); 
+  }, []);
 
   useEffect(() => {
     const autoLogin = async () => {
