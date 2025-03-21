@@ -10,6 +10,10 @@ const types = {
     regex: /^.{6,}$/,
     message: 'Password must contain at least 6 characters',
   },
+  number: {
+    regex: /^\d+$/,
+    message: 'Please enter a valid number',
+  },
 };
 
 const useForm = (type) => {
