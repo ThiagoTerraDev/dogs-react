@@ -26,8 +26,8 @@ const useFetch = () => {
         setError('Email already registered');
       } else if (err.message === 'Usuário já cadastrado') {
         setError('Username already registered');
-      } else {
-        setError(err.message);
+      } else if (err.message === 'Dados incompletos.') {
+        setError('Incomplete data.');
       }
     } finally {
       setData(json);
