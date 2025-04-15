@@ -70,6 +70,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0 1rem;
     margin: 0 auto;
   }
+  .mainContainer {
+    margin-top: 4rem;
+  }
 `;
 
 const App = () => {
