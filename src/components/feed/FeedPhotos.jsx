@@ -41,7 +41,7 @@ const FeedPhotosStyled = styled.div`
 `;
 
 
-const FeedPhotos = () => {
+const FeedPhotos = ({ setModalPhoto }) => {
 
   const { data, loading, error, request } = useFetch();
 
@@ -63,9 +63,13 @@ const FeedPhotos = () => {
   if (data) {
     return (
       <FeedPhotosStyled>
-        {data.map(photo => {
-          return <FeedPhotosItem key={photo.id} photo={photo} />;
-        })}
+        {data.map(photo => (
+          <FeedPhotosItem 
+            key={photo.id} 
+            photo={photo}
+            setModalPhoto={setModalPhoto} 
+          />
+        ))}
       </FeedPhotosStyled>
     );
   } else {

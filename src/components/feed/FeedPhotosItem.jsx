@@ -36,9 +36,9 @@ const ViewIconStyled = styled(ViewIcon)`
 `;
 
 
-const FeedPhotosItem = ({photo}) => {
+const FeedPhotosItem = ({ photo, setModalPhoto }) => {
   return (
-    <PhotoItem>
+    <PhotoItem onClick={() => setModalPhoto(photo)}>
       <img src={photo.src} alt={photo.title} />
       <span>
         <ViewIconStyled />
