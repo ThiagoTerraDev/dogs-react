@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PhotoComments from './PhotoComments';
 import ViewIcon from '../../assets/visualizacao-black.svg?react';
 import { styled, keyframes } from 'styled-components';
+import { UserContext } from '../../UserContext';
+import PhotoDelete from './PhotoDelete';
 
 
 const scaleUp = keyframes`
@@ -92,6 +94,7 @@ const Attributes = styled.ul`
 
 
 const PhotoContent = ({ data, modalRef }) => {
+  const user = useContext(UserContext);
   const { photo, comments } = data;
 
   return (
@@ -102,7 +105,10 @@ const PhotoContent = ({ data, modalRef }) => {
       <PhotoDetails>
         <div>
           <MetaInfo>
-            <Link to={`/profile/${photo.author}`}>@{photo.author}</Link>
+            {user.data && user.data.username === photo.author ? 
+              <PhotoDelete id={photo.id} /> :
+              <Link to={`/profile/${photo.author}`}>@{photo.author}</Link>
+            }
             <span>
               <ViewIconStyled />
               {photo.acessos}
